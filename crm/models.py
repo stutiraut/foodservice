@@ -15,8 +15,7 @@ class Customer(models.Model):
     state = models.CharField(max_length=50)
     zipcode = models.CharField(max_length=10)
     phone_number = models.CharField(max_length=50)
-    created_date = models.DateTimeField(
-        default=timezone.now)
+    created_date = models.DateTimeField(default=timezone.now)
     updated_date = models.DateTimeField(auto_now_add=True)
 
     def created(self):
@@ -31,50 +30,49 @@ class Customer(models.Model):
         return str(self.cust_name)
 
 class Service(models.Model):
-        cust_name = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='services')
-        service_category = models.CharField(max_length=100)
-        description = models.TextField()
-        location = models.CharField(max_length=200)
-        setup_time = models.DateTimeField(
-            default=timezone.now)
-        cleanup_time = models.DateTimeField(
-            default=timezone.now)
-        service_charge = models.DecimalField(max_digits=10, decimal_places=2)
-        created_date = models.DateTimeField(
-            default=timezone.now)
-        updated_date = models.DateTimeField(auto_now_add=True)
+    cust_name = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='services')
+    service_category = models.CharField(max_length=100)
+    description = models.TextField()
+    location = models.CharField(max_length=200)
+    setup_time = models.DateTimeField(
+        default=timezone.now)
+    cleanup_time = models.DateTimeField(
+        default=timezone.now)
+    service_charge = models.DecimalField(max_digits=10, decimal_places=2)
+    created_date = models.DateTimeField(
+        default=timezone.now)
+    updated_date = models.DateTimeField(auto_now_add=True)
 
-        def created(self):
-            self.acquired_date = timezone.now()
-            self.save()
+    def created(self):
+        self.acquired_date = timezone.now()
+        self.save()
 
-        def updated(self):
-            self.recent_date = timezone.now()
-            self.save()
+    def updated(self):
+        self.recent_date = timezone.now()
+        self.save()
 
-        def __str__(self):
-            return str(self.cust_name)
+    def __str__(self):
+        return str(self.cust_name)
 
 class Product(models.Model):
-        cust_name = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='products')
-        product = models.CharField(max_length=100)
-        p_description = models.TextField()
-        quantity = models.IntegerField()
-        pickup_time = models.DateTimeField(
-            default=timezone.now)
-        charge = models.DecimalField(max_digits=10, decimal_places=2)
-        created_date = models.DateTimeField(
-            default=timezone.now)
-        updated_date = models.DateTimeField(auto_now_add=True)
+    cust_name = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='products')
+    product = models.CharField(max_length=100)
+    p_description = models.TextField()
+    quantity = models.IntegerField()
+    pickup_time = models.DateTimeField(
+        default=timezone.now)
+    charge = models.DecimalField(max_digits=10, decimal_places=2)
+    created_date = models.DateTimeField(
+        default=timezone.now)
+    updated_date = models.DateTimeField(auto_now_add=True)
 
-        def created(self):
-            self.acquired_date = timezone.now()
-            self.save()
+    def created(self):
+        self.acquired_date = timezone.now()
+        self.save()
 
-        def updated(self):
-            self.recent_date = timezone.now()
-            self.save()
+    def updated(self):
+        self.recent_date = timezone.now()
+        self.save()
 
-        def __str__(self):
-            return str(self.cust_name)
-
+    def __str__(self):
+        return str(self.cust_name)
