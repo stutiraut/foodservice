@@ -141,3 +141,5 @@ def summary(request, pk):
                                                     'services': services,
                                                     'sum_service_charge': sum_service_charge,
                                                     'sum_product_charge': sum_product_charge,})
+
+
